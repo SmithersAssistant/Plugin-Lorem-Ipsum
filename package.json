@@ -1,0 +1,26 @@
+{
+  "name": "loremipsum",
+  "version": "0.0.1",
+  "description": "A Lorem Ipsum plugin for the Smithers Assistant",
+  "main": "dist/index.js",
+  "keywords": [
+    "smithers",
+    "assistant",
+    "loremipsum",
+    "plugin"
+  ],
+  "author": "Robin Malfait <malfait.robin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lorem-ipsum": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-plugin-syntax-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.11.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1"
+  }
+}
