@@ -26,6 +26,7 @@ export default robot => {
     render() {
       const {config, output} = this.state;
       const {count, ...other} = this.props;
+      
       const title = `Lorem ipsum (${config.count} paragraph${config.count == 1 ? '' : 's'})`;
 
       const actions = [{
@@ -35,13 +36,15 @@ export default robot => {
 
           robot.notify('Copied to clipboard!');
         },
-    }]
+      }]
 
       return (
-        <Blank {...other} title={title} actions={actions}>
-          <div className="clearfix">
-            <pre>{output}</pre>
-          </div>
+        <Blank
+          {...other}
+          title={title}
+          actions={actions}
+        >
+          <pre>{output}</pre>
         </Blank>
       )
     }
