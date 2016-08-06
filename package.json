@@ -1,6 +1,6 @@
 {
   "name": "loremipsum",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A Lorem Ipsum plugin for the Smithers Assistant",
   "main": "dist/index.js",
   "keywords": [
