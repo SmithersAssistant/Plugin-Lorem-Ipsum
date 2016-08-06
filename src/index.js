@@ -52,12 +52,21 @@ export default robot => {
 
   robot.registerComponent(Lorem, LOREM_PLUGIN);
 
-  robot.listen(/^lorem ?(\d*)?$/, {
+  robot.listen(/^lorem (\d*)$/, {
     description: 'Lorem ipsum generator',
-    usage: 'lorem <paragraphs?>',
+    usage: 'lorem <paragraphs>',
   }, (res) => {
     robot.addCard(LOREM_PLUGIN, {
       count: res.matches[1] || 1
     })
-  })
+  });
+
+  robot.listen(/^lorem$/, {
+    description: 'Lorem ipsum generator',
+    usage: 'lorem',
+  }, (res) => {
+    robot.addCard(LOREM_PLUGIN, {
+      count:  1
+    })
+  });
 }

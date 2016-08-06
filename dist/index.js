@@ -63,15 +63,14 @@ exports.default = function (robot) {
 
       return _react2.default.createElement(
         Blank,
-        _extends({}, other, { title: title, actions: actions }),
+        _extends({}, other, {
+          title: title,
+          actions: actions
+        }),
         _react2.default.createElement(
-          'div',
-          { className: 'clearfix' },
-          _react2.default.createElement(
-            'pre',
-            null,
-            output
-          )
+          'pre',
+          null,
+          output
         )
       );
     }
@@ -79,12 +78,21 @@ exports.default = function (robot) {
 
   robot.registerComponent(Lorem, LOREM_PLUGIN);
 
-  robot.listen(/^lorem ?(\d*)?$/, {
+  robot.listen(/^lorem (\d*)$/, {
     description: 'Lorem ipsum generator',
-    usage: 'lorem <paragraphs?>'
+    usage: 'lorem <paragraphs>'
   }, function (res) {
     robot.addCard(LOREM_PLUGIN, {
       count: res.matches[1] || 1
+    });
+  });
+
+  robot.listen(/^lorem$/, {
+    description: 'Lorem ipsum generator',
+    usage: 'lorem'
+  }, function (res) {
+    robot.addCard(LOREM_PLUGIN, {
+      count: 1
     });
   });
 };
