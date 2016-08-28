@@ -2,4 +2,12 @@
 
 A lorem ipsum plugin for the [Smithers Assistant](https://github.com/SmithersAssistant/smithers).
 
+## Installation
+
+```
+install smithers-loremipsum
+```
+
+## Preview
+
 ![](https://d.pr/i/CdPr+)
