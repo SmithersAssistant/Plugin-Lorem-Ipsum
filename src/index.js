@@ -1,13 +1,11 @@
-import React from 'react';
 import lorem from 'lorem-ipsum';
 import { clipboard } from 'electron';
 
 const LOREM_PLUGIN = 'com.robinmalfait.lorem';
 
 export default robot => {
-  const {
-    Blank
-  } = robot.cards;
+  const {React} = robot.dependencies
+  const {Blank} = robot.cards;
 
   const Lorem = React.createClass({
     getInitialState() {

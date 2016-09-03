@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _loremIpsum = require('lorem-ipsum');
 
 var _loremIpsum2 = _interopRequireDefault(_loremIpsum);
@@ -23,10 +19,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var LOREM_PLUGIN = 'com.robinmalfait.lorem';
 
 exports.default = function (robot) {
+  var React = robot.dependencies.React;
   var Blank = robot.cards.Blank;
 
 
-  var Lorem = _react2.default.createClass({
+  var Lorem = React.createClass({
     displayName: 'Lorem',
     getInitialState: function getInitialState() {
       var config = {
@@ -61,13 +58,13 @@ exports.default = function (robot) {
         }
       }];
 
-      return _react2.default.createElement(
+      return React.createElement(
         Blank,
         _extends({}, other, {
           title: title,
           actions: actions
         }),
-        _react2.default.createElement(
+        React.createElement(
           'pre',
           null,
           output
