@@ -4,8 +4,9 @@ import { clipboard } from 'electron';
 const LOREM_PLUGIN = 'com.robinmalfait.lorem';
 
 export default robot => {
-  const {React} = robot.dependencies
-  const {Blank} = robot.cards;
+  const { React } = robot.dependencies
+  const { Blank } = robot.cards;
+  const { enhance, restorableComponent } = robot
 
   const Lorem = React.createClass({
     getInitialState() {
@@ -21,20 +22,25 @@ export default robot => {
         output: lorem(config),
       }
     },
+    getDefaultProps() {
+      return {
+        count: 1
+      }
+    },
     render() {
-      const {config, output} = this.state;
-      const {count, ...other} = this.props;
-      
+      const { config, output } = this.state;
+      const { count, ...other } = this.props;
+
       const title = `Lorem ipsum (${config.count} paragraph${config.count == 1 ? '' : 's'})`;
 
-      const actions = [{
+      const actions = [ {
         label: 'Copy to clipboard',
         onClick: () => {
           clipboard.writeText(output);
 
           robot.notify('Copied to clipboard!');
         },
-      }]
+      } ]
 
       return (
         <Blank
@@ -48,23 +54,25 @@ export default robot => {
     }
   })
 
-  robot.registerComponent(Lorem, LOREM_PLUGIN);
+  robot.registerComponent(enhance(Lorem, [
+    restorableComponent
+  ]), LOREM_PLUGIN);
 
   robot.listen(/^lorem (\d*)$/, {
     description: 'Lorem ipsum generator',
     usage: 'lorem <paragraphs>',
-  }, (res) => {
+  }, ({ matches }) => {
     robot.addCard(LOREM_PLUGIN, {
-      count: res.matches[1] || 1
+      count: matches.paragraphs
     })
   });
 
   robot.listen(/^lorem$/, {
     description: 'Lorem ipsum generator',
     usage: 'lorem',
-  }, (res) => {
+  }, () => {
     robot.addCard(LOREM_PLUGIN, {
-      count:  1
+      count: 1
     })
   });
 }

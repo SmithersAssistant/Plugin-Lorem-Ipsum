@@ -21,6 +21,8 @@ var LOREM_PLUGIN = 'com.robinmalfait.lorem';
 exports.default = function (robot) {
   var React = robot.dependencies.React;
   var Blank = robot.cards.Blank;
+  var enhance = robot.enhance;
+  var restorableComponent = robot.restorableComponent;
 
 
   var Lorem = React.createClass({
@@ -36,6 +38,11 @@ exports.default = function (robot) {
       return {
         config: config,
         output: (0, _loremIpsum2.default)(config)
+      };
+    },
+    getDefaultProps: function getDefaultProps() {
+      return {
+        count: 1
       };
     },
     render: function render() {
@@ -73,21 +80,23 @@ exports.default = function (robot) {
     }
   });
 
-  robot.registerComponent(Lorem, LOREM_PLUGIN);
+  robot.registerComponent(enhance(Lorem, [restorableComponent]), LOREM_PLUGIN);
 
   robot.listen(/^lorem (\d*)$/, {
     description: 'Lorem ipsum generator',
     usage: 'lorem <paragraphs>'
-  }, function (res) {
+  }, function (_ref) {
+    var matches = _ref.matches;
+
     robot.addCard(LOREM_PLUGIN, {
-      count: res.matches[1] || 1
+      count: matches.paragraphs
     });
   });
 
   robot.listen(/^lorem$/, {
     description: 'Lorem ipsum generator',
     usage: 'lorem'
-  }, function (res) {
+  }, function () {
     robot.addCard(LOREM_PLUGIN, {
       count: 1
     });
